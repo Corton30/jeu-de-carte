@@ -18,7 +18,7 @@ app.post('/api/create-account', async (req, res) => {
     try {
         const { username, password } = req.body;
         // Créer un utilisateur dans la base de données
-        const user = new Utilisateur({ username, email, password });
+        const user = new Utilisateur({ username, password });
         await user.save();
         res.json({ message: 'Compte créé avec succès!', user });
     } catch (error) {
