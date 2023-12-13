@@ -12,13 +12,37 @@ function LoginPage() {
         setPassword(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Here you can add your logic to handle the login
-        // For this example, we'll just log the username and password to the console
-        console.log('Username:', username);
-        console.log('Password:', password);
+
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (response.status === 200) {
+                // Login successful
+                console.log('Login successful');
+                // You can redirect the user to a different page or update the UI accordingly here
+            } else if (response.status === 401) {
+                // Invalid credentials
+                console.log('Invalid username or password');
+                // You can display an error message to the user
+            } else {
+                // Other server error
+                console.log('Server error');
+                // Handle other error cases as needed
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle network or other errors
+        }
     };
+
 
     return (
         <div>
