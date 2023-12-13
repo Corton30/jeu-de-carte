@@ -1,9 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/Login";
 
 const App = () => {
     return (
-        <h1>saba7 el fol</h1>
+        <Routes>
+            <Route path="/login" Component={LoginPage} />
+        </Routes>
     );
 };
 
