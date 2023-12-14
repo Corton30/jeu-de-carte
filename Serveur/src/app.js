@@ -68,18 +68,18 @@ app.use(bodyParser.json());
 
 
 sequelize.sync()
-  .then(async () => {
-    // Créez un exemple d'utilisateur
-    const exampleUser = await User.create({
-      username: 'utilisateur1',
-      password: 'motdepasse1',
-    });
+    .then(async () => {
+        // Créez un exemple d'utilisateur
+        const exampleUser = await User.create({
+            username: 'utilisateur1',
+            password: 'motdepasse1',
+        });
 
-    console.log('Exemple d\'utilisateur créé:', exampleUser.toJSON());
-  })
-  .catch((error) => {
-    console.error('Erreur lors de la synchronisation de la base de données:', error);
-  });
+        console.log('Exemple d\'utilisateur créé:', exampleUser.toJSON());
+    })
+    .catch((error) => {
+        console.error('Erreur lors de la synchronisation de la base de données:', error);
+    });
 
 //endpoint d'inscription 
 app.post('/create-account', async (req, res) => {
@@ -117,17 +117,28 @@ app.post('/login', async (req, res) => {
 });
 
 //endpoint de la creation de la partie 
-app.post('/create-game', async (req, res) => {
+app.post('/create-account', async (req, res) => {
     try {
-        const { creator, gameName } = req.body;
-        const game = await Game.create({ creator, gameName });
-        res.json({ message: 'Partie créée avec succès!', game });
-        res.redirect(`?gamename=${gamename}`);
+        const { username, password } = req.body;
+
+        // Vérifier si l'utilisateur avec le même nom d'utilisateur existe déjà
+        const existingUser = await User.findOne({ where: { username } });
+
+        if (existingUser) {
+            return res.status(400).json({ error: 'Le nom d\'utilisateur existe déjà.' });
+        }
+
+        // Si l'utilisateur n'existe pas, créez-le
+        const user = await User.create({ username, password });
+        res.json({ message: 'Compte créé avec succès!', user });
+        res.sendFile('connection.html');
+        res.redirect('/login');
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Erreur lors de la création de la partie' });
+        res.status(500).json({ error: 'Erreur lors de la création du compte' });
     }
 });
+
 
 //rejoindre une partie
 app.post('/join-game', async (req, res) => {
