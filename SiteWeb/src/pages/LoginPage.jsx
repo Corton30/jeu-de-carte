@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './LoginPage.css';
 
 function LoginPage() {
     const [username, setUsername] = useState('');
@@ -30,25 +31,25 @@ function LoginPage() {
                 // You can redirect the user to a different page or update the UI accordingly here
             } else if (response.status === 401) {
                 // Invalid credentials
-                console.log('Invalid username or password');
+                window.alert('Invalid username or password');
                 // You can display an error message to the user
             } else {
                 // Other server error
-                console.log('Server error');
+                window.alert('Server error');
                 // Handle other error cases as needed
             }
         } catch (error) {
             console.error('Error:', error);
             // Handle network or other errors
+            window.alert('Network or other error occurred');
         }
     };
 
-
     return (
-        <div>
+        <div className="login-container">
             <h1>Login Page</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form onSubmit={handleSubmit} className="login-form">
+                <div className="form-group">
                     <label htmlFor="username">Username:</label>
                     <input
                         type="text"
@@ -58,7 +59,7 @@ function LoginPage() {
                         required
                     />
                 </div>
-                <div>
+                <div className="form-group">
                     <label htmlFor="password">Password:</label>
                     <input
                         type="password"
@@ -68,7 +69,9 @@ function LoginPage() {
                         required
                     />
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" className="login-button">
+                    Login
+                </button>
             </form>
         </div>
     );
