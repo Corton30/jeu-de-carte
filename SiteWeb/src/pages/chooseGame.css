@@ -1,0 +1,58 @@
+.game-selection-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9; /* Couleur de fond claire */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333; /* Texte en gris foncé pour une lecture facile */
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .tab {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff; /* Boutons blancs */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0 5px; /* Espacement entre les onglets */
+    color: #555; /* Couleur de texte pour les onglets */
+  }
+  
+  .tab:hover {
+    background-color: #e8e8e8; /* Léger changement de couleur au survol */
+  }
+  
+  .tab.active {
+    background-color: #4a90e2; /* Bleu sobre pour l'onglet actif */
+    color: white; /* Texte blanc pour l'onglet actif */
+    border-color: #4a90e2;
+  }
+  
+  .tab:disabled {
+    background-color: #ddd;
+    color: #aaa; /* Texte grisé pour les onglets désactivés */
+    cursor: not-allowed;
+  }
+  
+  .tab-content {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff; /* Fond blanc pour le contenu */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  h1 {
+    color: #333; /* Titre en gris foncé */
+    margin-bottom: 1em;
+  }
+  

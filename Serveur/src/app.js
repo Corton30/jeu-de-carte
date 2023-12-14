@@ -12,7 +12,7 @@ connectDB();
 
 
 // Middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json());ß
 
 // Routes
 app.post('/api/create-account', async (req, res) => {

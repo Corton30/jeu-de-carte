@@ -1,0 +1,51 @@
+.menu-principal {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .menu-principal h1 {
+    margin-bottom: 20px;
+  }
+  
+  .menu-principal table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .menu-principal th,
+  .menu-principal td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .menu-principal th {
+    background-color: #4a90e2;
+    color: white;
+  }
+  
+  .menu-principal form {
+    margin-top: 20px;
+  }
+  
+  .menu-principal input {
+    margin-right: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .menu-principal button {
+    padding: 10px 15px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
