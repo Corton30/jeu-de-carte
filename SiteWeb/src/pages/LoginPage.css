@@ -1,3 +1,7 @@
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
 /* Styling for the overall login container */
 .login-container {
     display: flex;

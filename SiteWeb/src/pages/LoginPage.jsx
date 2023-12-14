@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
+import { SERVER_URL } from '../index';
 
 function LoginPage() {
     const [username, setUsername] = useState('');
@@ -17,7 +18,7 @@ function LoginPage() {
         e.preventDefault();
 
         try {
-            const response = await fetch('/login', {
+            const response = await fetch(`${SERVER_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -26,17 +27,11 @@ function LoginPage() {
             });
 
             if (response.status === 200) {
-                // Login successful
-                console.log('Login successful');
-                // You can redirect the user to a different page or update the UI accordingly here
+                alert('Login successful');
             } else if (response.status === 401) {
-                // Invalid credentials
-                window.alert('Invalid username or password');
-                // You can display an error message to the user
+                alert('Invalid username or password');
             } else {
-                // Other server error
-                window.alert('Server error');
-                // Handle other error cases as needed
+                alert('Server error');
             }
         } catch (error) {
             console.error('Error:', error);
