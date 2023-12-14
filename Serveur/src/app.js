@@ -1,12 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const connectDB = require('../BD/connectionBD'); // Adjust the path to where your connectDB module is located
 const { Utilisateur, History, Jeu } = require('../BD/UserModel'); // Adjust the path as needed
 
-const app = express();
+const app = express();  
 const port = 3000;
+app.use(cors())
 
-// Connect to MongoDB
 connectDB();
 
 
