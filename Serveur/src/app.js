@@ -66,7 +66,7 @@ app.use(bodyParser.json());
 
 // Routes
 
-
+//test user
 sequelize.sync()
     .then(async () => {
         // Créez un exemple d'utilisateur
@@ -85,6 +85,15 @@ sequelize.sync()
 app.post('/create-account', async (req, res) => {
     try {
         const { username, password } = req.body;
+
+        // Vérifier si l'utilisateur avec le même nom d'utilisateur existe déjà
+        const existingUser = await User.findOne({ where: { username } });
+
+        if (existingUser) {
+            return res.status(400).json({ error: 'Le nom d\'utilisateur existe déjà.' });
+        }
+
+        // Si l'utilisateur n'existe pas, créez-le
         const user = await User.create({ username, password });
         res.json({ message: 'Compte créé avec succès!', user });
         res.sendFile('connection.html');
@@ -94,6 +103,7 @@ app.post('/create-account', async (req, res) => {
         res.status(500).json({ error: 'Erreur lors de la création du compte' });
     }
 });
+
 
 // Endpoint de connexion
 app.post('/login', async (req, res) => {
@@ -294,7 +304,7 @@ app.post('/load-saved-game', async (req, res) => {
         /*const loadedGame = await Game.findByPk(savedGame.gameId);
     
         if (!loadedGame) {
-          return res.status(404).json({ error: 'Partie correspondante non trouvée.' });
+            return res.status(404).json({ error: 'Partie correspondante non trouvée.' });
         }*/
 
         // Mettre à jour l'état de la partie avec celui de la sauvegarde
