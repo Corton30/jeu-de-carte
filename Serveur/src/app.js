@@ -106,19 +106,22 @@ app.post('/create-account', async (req, res) => {
 });
 
 
+
 // Endpoint de connexion
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
         // Vérifiez si l'utilisateur existe
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ where: { username } });
 
         if (!user) {
             return res.status(401).json({ error: 'Nom d\'utilisateur incorrect.' });
         }
+
+        // Compare passwords (plain text)
         if (user.password !== password) {
-            return res.status(402).json({ error: 'mot de passe incorrect.' ,});
+            return res.status(402).json({ error: 'Mot de passe incorrect.' });
         }
 
         res.status(200).json({ message: 'Connexion réussie.' });
@@ -128,6 +131,7 @@ app.post('/login', async (req, res) => {
         res.status(500).json({ error: 'Erreur lors de la connexion.' });
     }
 });
+
 
 
 
