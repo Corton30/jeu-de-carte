@@ -5,6 +5,7 @@ import { SERVER_URL } from '../index';
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleUsernameChange = (e) => {
         setUsername(e.target.value);
@@ -27,15 +28,14 @@ function LoginPage() {
             });
 
             if (response.status === 200) {
-                alert('Login successful');
+                setMessage('Login successful');
             } else if (response.status === 401) {
-                alert('Invalid username or password');
+                setMessage('Invalid username or password');
             } else {
-                alert('Server error');
+                setMessage('Server error');
             }
         } catch (error) {
             console.error('Error:', error);
-            // Handle network or other errors
             window.alert('Network or other error occurred');
         }
     };
@@ -67,6 +67,8 @@ function LoginPage() {
                 <button type="submit" className="login-button">
                     Login
                 </button>
+                <p>{message}</p>
+
             </form>
         </div>
     );
