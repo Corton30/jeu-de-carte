@@ -1,0 +1,87 @@
+/* Style global pour la page */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Conteneur principal */
+  .auth-container {
+    width: 350px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Titre de la page */
+  .auth-container h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style des champs de formulaire */
+  .auth-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ajoutez cela pour éviter que les largeurs ne dépassent 100% */
+  }
+  
+  /* Boutons pour basculer entre les modes */
+  .auth-switch-buttons {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .auth-switch-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .auth-switch-buttons button.active {
+    color: #f90;
+    cursor: default;
+  }
+  
+  /* Style du bouton de soumission */
+  .auth-container button.auth-submit {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f90;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  /* Lien mot de passe oublié */
+  .auth-container .auth-footer {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .auth-container .auth-footer a {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9em;
+  }
+  
+  /* Ajoutez une animation lors du survol */
+  .auth-container button:hover {
+    opacity: 0.8;
+  }
+  

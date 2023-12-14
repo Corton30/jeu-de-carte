@@ -12,10 +12,10 @@ connectDB();
 
 
 // Middleware
-app.use(bodyParser.json());ß
+app.use(bodyParser.json());
 
 // Routes
-app.post('/api/create-account', async (req, res) => {
+app.post('/create-account', async (req, res) => {
     try {
         const { username, password } = req.body;
         // Créer un utilisateur dans la base de données
