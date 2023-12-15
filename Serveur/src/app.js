@@ -72,20 +72,6 @@ app.use(bodyParser.json());
 
 // Routes
 
-//test user
-sequelize.sync()
-    .then(async () => {
-        // Créez un exemple d'utilisateur
-        const exampleUser = await User.create({
-            username: 'u1',
-            password: 'm1',
-        });
-
-        console.log('Exemple d\'utilisateur créé:', exampleUser.toJSON());
-    })
-    .catch((error) => {
-        console.error('Erreur lors de la synchronisation de la base de données:', error);
-    });
 
 //endpoint d'inscription 
 app.post('/create-account', async (req, res) => {
