@@ -5,13 +5,19 @@ import { SERVER_URL } from '../index';
 
 
 function LoginPage() {
-    const [formData, setFormData] = useState({ username: '', password: '' });
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const [message, setMessage] = useState('');
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value);
     };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,31 +28,27 @@ function LoginPage() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    username: formData.username,
-                    password: formData.password,
-                }),
+                body: JSON.stringify({ username, password }),
             });
 
-            if (response.status === 200) {
+            if (response.status == 200) {
                 setMessage('Login successful');
 //              ramy
                 // Redirigez vers la page du menu principal en utilisant le nom d'utilisateur
 //                const user = await response.json();
 //                navigate(`/nouvellePage?username=${user.username}`);
-            } else if (response.status === 401) {
+            } else if (response.status == 401) {
                 setMessage('Invalid username or password');
             } else {
                 setMessage('Server error');
             }
 
 
-            if (response.status == 200) {
-
-            } else {
-                // Gérez les erreurs de connexion ici (mauvais nom d'utilisateur ou mot de passe)
-                console.error('Échec de la connexion');
-            }
+            // if (response.status == 200) {
+            // } else {
+            //     // Gérez les erreurs de connexion ici (mauvais nom d'utilisateur ou mot de passe)
+            //     console.error('Échec de la connexion');
+            //}
         } catch (error) {
             console.error(error);
         }
@@ -60,15 +62,15 @@ function LoginPage() {
                     type="text"
                     name="username"
                     placeholder="Nom d'utilisateur"
-                    value={formData.username}
-                    onChange={handleChange}
+                    value={username}
+                    onChange={handleUsernameChange}
                 />
                 <input
                     type="password"
                     name="password"
                     placeholder="Mot de passe"
-                    value={formData.password}
-                    onChange={handleChange}
+                    value={password}
+                    onChange={handlePasswordChange}
                 />
                 <button type="submit" className="auth-submit">Se connecter</button>
             </form>
