@@ -106,16 +106,12 @@ app.post('/login', async (req, res) => {
         // Vérifiez si l'utilisateur existe
         const user = await User.findOne({ where: { username } });
 
-        if (!user) {
-            return res.status(401).json({ error: 'Nom d\'utilisateur incorrect.' });
+        if (!user || user.password !== password ) {
+            return res.status(401).json({ error: 'Nom d\'utilisateur ou Mot de passe incorrect.' });
         }
-
-        // Compare passwords (plain text)
-        if (user.password !== password) {
-            return res.status(402).json({ error: 'Mot de passe incorrect.' });
-        }
-
+        else{
         res.status(200).json({ message: 'Connexion réussie.' });
+        }
         //redirection vers la page du menu principal
     } catch (error) {
         console.error(error);
