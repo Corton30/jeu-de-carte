@@ -23,7 +23,7 @@ function LoginPage() {
         e.preventDefault();
         
         try {
-            const response = await fetch(`${SERVER_URL}/create-account`, {
+            const response = await fetch(`${SERVER_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
