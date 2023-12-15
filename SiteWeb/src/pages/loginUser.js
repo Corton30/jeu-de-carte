@@ -7,6 +7,7 @@ import { SERVER_URL } from '../index';
 function ConnexionPage() {
     const [formData, setFormData] = useState({ username: '', password: '' });
     const navigate = useNavigate();
+    const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,10 +28,21 @@ function ConnexionPage() {
                 }),
             });
 
-            if (response.ok) {
+            if (response.status === 200) {
+                setMessage('Login successful');
+//              ramy
                 // Redirigez vers la page du menu principal en utilisant le nom d'utilisateur
-                const user = await response.json();
-                navigate(`/nouvellePage?username=${user.username}`);
+//                const user = await response.json();
+//                navigate(`/nouvellePage?username=${user.username}`);
+            } else if (response.status === 401) {
+                setMessage('Invalid username or password');
+            } else {
+                setMessage('Server error');
+            }
+
+
+            if (response.status == 200) {
+
             } else {
                 // Gérez les erreurs de connexion ici (mauvais nom d'utilisateur ou mot de passe)
                 console.error('Échec de la connexion');
@@ -63,6 +75,7 @@ function ConnexionPage() {
             <div className="auth-footer">
                 <a href="/create-account">Pas de compte ? S'inscrire</a>
             </div>
+            <p>{message}</p>
         </div>
     );
 }
