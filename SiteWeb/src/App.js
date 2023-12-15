@@ -1,17 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import SignUpPage from './pages/createUser';
-import GameSelectionPage from './pages/chooseGame';
-import MenuPrincipalBataille from './pages/gameMenu';
-import ConnexionPage from './pages/loginUser';
+import CreateAccount from './pages/CreateAccount';
+import GameChoice from './pages/GameChoice';
+import GameMenu from './pages/GameMenu';
+import LoginPage from './pages/LoginPage';
 
 const App = () => {
     return (
         <Routes>
-            <Route path="/login" element={<ConnexionPage />} />
-            <Route path="/create-account" element={<SignUpPage />} />
-            <Route path="/game-choice" element={<GameSelectionPage />} />  
-            <Route path="/bataille-menu" element={<MenuPrincipalBataille />} />            
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/create-account" element={<CreateAccount />} />
+            <Route path="/game-choice" element={<GameChoice />} />  
+            <Route path="/bataille-menu" element={<GameMenu />} />            
         </Routes>
     );
 };

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import './gameMenu.css'; // Votre CSS personnalisé
+import './GameMenu.css'; // Votre CSS personnalisé
 import { SERVER_URL } from '../index';
 
 
-function MenuPrincipalBataille({ username }) {
+function GameMenu({ username }) {
     const [parties, setParties] = useState([
-       /*des exemples : 
+        /*des exemples : 
         { id: 1, nom: 'Bataille Royale', date: '2023-04-01', joueurs: '4/5', etat: 'en attente' },
   { id: 2, nom: 'Conquête Éclair', date: '2023-04-02', joueurs: '2/5', etat: 'ouverte' },
   { id: 3, nom: 'Duel au Sommet', date: '2023-04-03', joueurs: '5/5', etat: 'complète' },*/
@@ -51,4 +51,4 @@ function MenuPrincipalBataille({ username }) {
     );
   }
   
-  export default MenuPrincipalBataille;
+  export default GameMenu;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './chooseGame.css'; // Assurez-vous que le chemin est correct
+import './GameChoice.css'; // Assurez-vous que le chemin est correct
 import { SERVER_URL } from '../index';
 
 
-function GameSelectionPage({ username }) {
+function GameChoice({ username }) {
   const [selectedGame, setSelectedGame] = useState('');
 
   const games = {
@@ -44,4 +44,4 @@ function GameSelectionPage({ username }) {
   );
 }
 
-export default GameSelectionPage;
+export default GameChoice;

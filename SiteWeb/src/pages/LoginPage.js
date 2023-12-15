@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './createUser.css';
+import './LoginPage.css';
 import { SERVER_URL } from '../index';
 
-function SignUpPage() {
+
+function LoginPage() {
     const [formData, setFormData] = useState({ username: '', password: '' });
-    const navigate = useNavigate(); // Use useNavigate inside a component
+    const navigate = useNavigate();
+    const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,10 +15,9 @@ function SignUpPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        
         try {
             const response = await fetch(`${SERVER_URL}/create-account`, {
-                
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,12 +28,24 @@ function SignUpPage() {
                 }),
             });
 
-            if (response.ok) {
-                // Redirect to the login page after successful registration
-                navigate('/login'); // Use navigate here
+            if (response.status === 200) {
+                setMessage('Login successful');
+//              ramy
+                // Redirigez vers la page du menu principal en utilisant le nom d'utilisateur
+//                const user = await response.json();
+//                navigate(`/nouvellePage?username=${user.username}`);
+            } else if (response.status === 401) {
+                setMessage('Invalid username or password');
             } else {
-                // Handle registration errors here
-                console.error("Registration failed");
+                setMessage('Server error');
+            }
+
+
+            if (response.status == 200) {
+
+            } else {
+                // Gérez les erreurs de connexion ici (mauvais nom d'utilisateur ou mot de passe)
+                console.error('Échec de la connexion');
             }
         } catch (error) {
             console.error(error);
@@ -41,7 +54,7 @@ function SignUpPage() {
 
     return (
         <div className="auth-container">
-            <h1>Créer un Compte</h1>
+            <h1>Connexion</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -57,13 +70,14 @@ function SignUpPage() {
                     value={formData.password}
                     onChange={handleChange}
                 />
-                <button type="submit" className="auth-submit">S'inscrire</button>
+                <button type="submit" className="auth-submit">Se connecter</button>
             </form>
             <div className="auth-footer">
-                <a href="/login">Déjà un compte ? Connectez-vous</a>
+                <a href="/create-account">Pas de compte ? S'inscrire</a>
             </div>
+            <p>{message}</p>
         </div>
     );
 }
 
-export default SignUpPage;
+export default LoginPage;
