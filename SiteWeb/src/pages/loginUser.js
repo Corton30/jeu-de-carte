@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './loginUser.css'; // Assurez-vous que le chemin d'accès au CSS est correct
+import { SERVER_URL } from '../index';
+
 
 function ConnexionPage() {
     const [formData, setFormData] = useState({ username: '', password: '' });
@@ -14,7 +16,7 @@ function ConnexionPage() {
         e.preventDefault();
         
         try {
-            const response = await fetch('/login', {
+            const response = await fetch(`${SERVER_URL}/create-account`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

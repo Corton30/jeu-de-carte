@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './createUser.css';
+import { SERVER_URL } from '../index';
 
 function SignUpPage() {
     const [formData, setFormData] = useState({ username: '', password: '' });
@@ -14,7 +15,8 @@ function SignUpPage() {
         e.preventDefault();
 
         try {
-            const response = await fetch('/create-account', {
+            const response = await fetch(`${SERVER_URL}/create-account`, {
+                
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

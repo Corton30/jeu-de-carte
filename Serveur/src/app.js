@@ -1,8 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Sequelize, DataTypes } = require('sequelize');
+const cors = require('cors');
 const app = express();
 const port = 3000;
+
+
+// Enable CORS for all routes or for specific origins
+app.use(cors());
 
 // Connexion à la base de données SQLite (vous pouvez utiliser un autre type de base de données)
 const sequelize = new Sequelize({

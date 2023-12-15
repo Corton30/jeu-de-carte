@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './gameMenu.css'; // Votre CSS personnalisé
+import { SERVER_URL } from '../index';
+
 
 function MenuPrincipalBataille({ username }) {
     const [parties, setParties] = useState([
