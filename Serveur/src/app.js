@@ -57,7 +57,12 @@ const SavedGame = sequelize.define('SavedGame', {
     },
     gameState: {
         type: DataTypes.JSON,
-        allowNull: false,
+        defaultValue: {
+            players: [],
+            currentPlayer: 0,
+            deck: [],
+            chat: [],
+        },
     },
 });
 
@@ -66,6 +71,7 @@ app.use(bodyParser.json());
 
 
 // Routes
+
 
 //endpoint d'inscription 
 app.post('/create-account', async (req, res) => {
@@ -110,6 +116,20 @@ app.post('/login', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erreur lors de la connexion.' });
+    }
+});
+
+
+
+app.post('/create-game', async (req, res) => {
+    try {
+        const { usernameFromURL, nomPartie } = req.body;
+        // Créer une partie dans la base de données
+        const game = await Game.create({ usernameFromURL, nomPartie });
+        res.status(200).json({ message: 'creation de la partie réussie.', game });
+    } catch (error) {
+        console.error(error);
+        res.status(401).json({ error: 'Erreur lors de la création de la partie' });
     }
 });
 
