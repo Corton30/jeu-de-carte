@@ -14,6 +14,11 @@ function GameChoice({ username }) {
 
   const handleGameSelect = (gameName) => {
     setSelectedGame(gameName);
+    const currentUrl = window.location.href;
+    const urlObjet = new  URL(currentUrl);
+    const params = urlObjet.searchParams;
+    const username = params.get('username');
+    window.location.href=`/bataille-menu?username=${username}`;
   };
 
   return (

@@ -21,7 +21,7 @@ function LoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             const response = await fetch(`${SERVER_URL}/login`, {
                 method: 'POST',
@@ -31,13 +31,13 @@ function LoginPage() {
                 body: JSON.stringify({ username, password }),
             });
 
-            if (response.status == 200) {
+            if (response.status === 200) {
                 setMessage('Login successful');
 //              ramy
                 // Redirigez vers la page du menu principal en utilisant le nom d'utilisateur
 //                const user = await response.json();
-//                navigate(`/nouvellePage?username=${user.username}`);
-            } else if (response.status == 401) {
+/****** MAJ */    navigate(`/game-choice?username=${username}`);   //MAJ *********/
+            } else if (response.status === 401) {
                 setMessage('Invalid username or password');
             } else {
                 setMessage('Server error');

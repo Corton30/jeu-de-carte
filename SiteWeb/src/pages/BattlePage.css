@@ -1,4 +1,30 @@
 h1 {
-    text-align: center;
     color: red;
+    height: 700px;
+}
+
+#lancementPartie {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#jouerTour{
+    position: absolute;
+    top: 1;
+    left:0;
+    bottom: 0;
+    right: 1;
+}
+
+#sauvegarderPartie {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#chat{
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
