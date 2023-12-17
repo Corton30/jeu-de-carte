@@ -2,62 +2,52 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import './BattlePage.css';
 
-function BattlePage () {
+const App = () => {
     const [socket, setSocket] = useState(null);
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(prompt('Votre nom:'));
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
     const [messageInput, setMessageInput] = useState('');
 
     useEffect(() => {
-        if (username) {
-            const mySocket = io();
-            setSocket(mySocket);
+        const mySocket = io();
+        setSocket(mySocket);
 
-            mySocket.emit('join', username);
+        mySocket.emit('join', username);
 
-            mySocket.on('chat message', (msg) => {
-                setMessages((messages) => [
-                    ...messages,
-                    `${msg.user}: ${msg.message}`,
-                ]);
-            });
+        mySocket.on('chat message', (msg) => {
+            setMessages((messages) => [
+                ...messages,
+                `${msg.user}: ${msg.message}`,
+            ]);
+        });
 
-            mySocket.on('user joined', (msg) => {
-                setMessages((messages) => [...messages, msg]);
-            });
+        mySocket.on('user joined', (msg) => {
+            setMessages((messages) => [...messages, msg]);
+        });
 
-            mySocket.on('user left', (msg) => {
-                setMessages((messages) => [...messages, msg]);
-            });
+        mySocket.on('user left', (msg) => {
+            setMessages((messages) => [...messages, msg]);
+        });
 
-            mySocket.on('user list', (users) => {
-                setUsers(users);
-            });
+        mySocket.on('user list', (users) => {
+            setUsers(users);
+        });
 
-            return () => {
-                mySocket.disconnect();
-            };
-        }
+        return () => {
+            mySocket.disconnect();
+        };
     }, [username]);
-
-    const handleUsername = () => {
-        const inputName = prompt('Votre nom:');
-        setUsername(inputName);
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (socket) {
-            socket.emit('chat message', messageInput);
-            setMessageInput('');
-        }
+        socket.emit('chat message', messageInput);
+        setMessageInput('');
     };
 
     return (
         <div>
             <h1>Jeu De La Bataille</h1>
-            {!username && <button onClick={handleUsername}>Set Username</button>}
             <ul id="messages">
                 {messages.map((message, index) => (
                     <li key={index}>{message}</li>
@@ -78,9 +68,12 @@ function BattlePage () {
                     />
                     <button>Envoyer</button>
                 </form>
+                {/*<button id="lancementPartie">Lancer la partie</button>
+        <button id="sauvergarderPartie">Sauver la partie</button>
+        <button id="jouerTour">Poser une carte</button>*/}
             </div>
         </div>
     );
 };
 
-export default BattlePage;
+export default App;

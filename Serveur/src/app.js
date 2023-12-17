@@ -88,8 +88,8 @@ app.post('/create-account', async (req, res) => {
         // Si l'utilisateur n'existe pas, créez-le
         const user = await User.create({ username, password });
         res.json({ message: 'Compte créé avec succès!', user });
-        //        res.sendFile('connection.html');
-        //        res.redirect('/login');
+//        res.sendFile('connection.html');
+//        res.redirect('/login');
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erreur lors de la création du compte' });
@@ -106,11 +106,11 @@ app.post('/login', async (req, res) => {
         // Vérifiez si l'utilisateur existe
         const user = await User.findOne({ where: { username } });
 
-        if (!user || user.password !== password) {
+        if (!user || user.password !== password ) {
             return res.status(401).json({ error: 'Nom d\'utilisateur ou Mot de passe incorrect.' });
         }
-        else {
-            res.status(200).json({ message: 'Connexion réussie.' });
+        else{
+        res.status(200).json({ message: 'Connexion réussie.' });
         }
         //redirection vers la page du menu principal
     } catch (error) {
@@ -123,15 +123,15 @@ app.post('/login', async (req, res) => {
 
 app.post('/create-game', async (req, res) => {
     try {
-        const { usernameFromURL, nomPartie } = req.body;
-        // Créer une partie dans la base de données
-        const game = await Game.create({ usernameFromURL, nomPartie });
-        res.status(200).json({ message: 'creation de la partie réussie.', game });
+      const { usernameFromURL, nomPartie } = req.body;
+      // Créer une partie dans la base de données
+      const game = await Game.create({ usernameFromURL, nomPartie });
+      res.status(200).json({ message: 'creation de la partie réussie.', game });
     } catch (error) {
-        console.error(error);
-        res.status(401).json({ error: 'Erreur lors de la création de la partie' });
+      console.error(error);
+      res.status(401).json({ error: 'Erreur lors de la création de la partie' });
     }
-});
+  });
 
 
 
